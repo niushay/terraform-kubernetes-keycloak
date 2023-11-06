@@ -3,10 +3,10 @@ resource "kubernetes_config_map" "keycloak_config" {
     name = "keycloak-config"
   }
   data = {
-    KEYCLOAK_USER     = "admin"
-    KEYCLOAK_PASSWORD = "admin"
-    KEYCLOAK_REALM    = "myrealm"
-    KEYCLOAK_IMPORT   = "/tmp/realm.json"
+    KEYCLOAK_USER     = var.keycloak_user
+    KEYCLOAK_PASSWORD = var.keycloak_password
+    KEYCLOAK_REALM    = var.keycloak_realm
+    KEYCLOAK_IMPORT   = var.keycloak_import
   }
 }
 
@@ -15,9 +15,9 @@ resource "kubernetes_secret" "postgresql_credentials" {
     name = "postgresql-credentials"
   }
   data = {
-    POSTGRES_DB       = "base64_encoded_db_name"
-    POSTGRES_USER     = "base64_encoded_username"
-    POSTGRES_PASSWORD = "base64_encoded_password"
+    POSTGRES_DB       = var.postgres_db
+    POSTGRES_USER     = var.postgres_username
+    POSTGRES_PASSWORD = var.postgres_password
   }
 }
 
@@ -29,7 +29,7 @@ resource "kubernetes_persistent_volume_claim" "postgres_pvc" {
     access_modes = ["ReadWriteOnce"]
     resources {
       requests = {
-        storage = "1Gi"
+        storage = var.postgres_pvc_storage
       }
     }
   }
