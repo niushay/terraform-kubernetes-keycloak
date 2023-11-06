@@ -1,16 +1,33 @@
-variable "postgres_db" { default = "db_name" }
+variable "postgres_db" {
+  type        = string
+  description = "This is database name"
+}
+variable "postgres_username" {
+  type        = string
+  description = "This is database username"
 
-variable "postgres_username" { default = "db_username" }
-
-variable "postgres_password" { default = "db_password" }
-
-variable "postgres_pvc_storage" { default = "1Gi" }
-
-variable "keycloak_user" { default = "amdin" }
-
-variable "keycloak_password" { default = "admin" }
-
-variable "keycloak_realm" { default = "myrealm" }
-
-variable "keycloak_import" { default = "/tmp/realm.json" }
-
+}
+variable "postgres_password" {
+  type        = string
+  description = "This is database password"
+}
+variable "postgres_pvc_storage" {
+  type        = string
+  description = "This is amount of persistent volume claim of postgresql storage"
+}
+variable "keycloak_user" {
+  type        = string
+  description = "This is username of keycloak"
+}
+variable "keycloak_password" {
+  type        = string
+  description = "This is password of keycloak"
+}
+variable "keycloak_realm" {
+  type        = string
+  description = "This is realm of keycloak"
+}
+variable "keycloak_import" {
+  type        = string
+  description = "This is import path of keycloak"
+}
